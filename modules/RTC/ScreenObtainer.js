@@ -163,10 +163,20 @@ const ScreenObtainer = {
             getDisplayMedia = navigator.mediaDevices.getDisplayMedia.bind(navigator.mediaDevices);
         }
 
+        const { channelCount, disableAGC, disableAP, disableHdAudio } = this.options;
+        const audioProcessingValue = !disableAGC && !disableAP; 
+        const audio = this.options.disableHdAudio ? 'true' : {
+            autoGainControl: audioProcessingValue,
+            channelCount,
+            echoCancellation: audioProcessingValue,
+            noiseSuppression: audioProcessingValue,
+            sampleRate: 48000
+        }
+
         getDisplayMedia({
             video: true,
-            audio: true,
-            cursor: 'always'
+            audio,
+            cursor: 'always',
         })
             .then(stream => {
                 let applyConstraintsPromise;
