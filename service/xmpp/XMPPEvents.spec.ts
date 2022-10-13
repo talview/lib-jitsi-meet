@@ -87,6 +87,7 @@ describe( "/service/xmpp/XMPPEvents members", () => {
         expect( XMPPEvents.SOURCE_REMOVE ).toBe( 'xmpp.source_remove' );
         expect( XMPPEvents.SOURCE_REMOVE_ERROR ).toBe( 'xmpp.source_remove_error' );
         expect( XMPPEvents.SPEAKER_STATS_RECEIVED ).toBe( 'xmpp.speaker_stats_received' );
+        expect( XMPPEvents.START_RECORDING ).toBe( 'xmpp.start_recording' );
         expect( XMPPEvents.CONFERENCE_TIMESTAMP_RECEIVED ).toBe( 'xmpp.conference_timestamp_received' );
         expect( XMPPEvents.AV_MODERATION_APPROVED ).toBe( 'xmpp.av_moderation.approved' );
         expect( XMPPEvents.AV_MODERATION_REJECTED ).toBe( 'xmpp.av_moderation.rejected' );

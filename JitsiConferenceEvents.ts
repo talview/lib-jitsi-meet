@@ -300,6 +300,11 @@ export enum JitsiConferenceEvents {
      * Indicates that the local user has started muted.
      */
     STARTED_MUTED = 'conference.started_muted',
+ 
+    /**
+     * Start recording  .
+     */
+    START_RECORDING = 'conference.startRecording',
 
     /**
      * Indicates that subject of the conference has changed.
@@ -513,6 +518,7 @@ export const VIDEO_SIP_GW_AVAILABILITY_CHANGED = JitsiConferenceEvents.VIDEO_SIP
 export const VIDEO_SIP_GW_SESSION_STATE_CHANGED = JitsiConferenceEvents.VIDEO_SIP_GW_SESSION_STATE_CHANGED;
 export const START_MUTED_POLICY_CHANGED = JitsiConferenceEvents.START_MUTED_POLICY_CHANGED;
 export const STARTED_MUTED = JitsiConferenceEvents.STARTED_MUTED;
+export const START_RECORDING = JitsiConferenceEvents.START_RECORDING;
 export const SUBJECT_CHANGED = JitsiConferenceEvents.SUBJECT_CHANGED;
 export const SUSPEND_DETECTED = JitsiConferenceEvents.SUSPEND_DETECTED;
 export const TALK_WHILE_MUTED = JitsiConferenceEvents.TALK_WHILE_MUTED;

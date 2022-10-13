@@ -60,6 +60,12 @@ declare class RecordingManager {
         appData?: string;
     }): Promise<any>;
     /**
+         * Get active session detials.
+         *
+         * @returns {Object|undefined}
+         */
+    getActiveSession(): any | undefined;
+    /**
      * Stop a recording session.
      *
      * @param {string} sessionID - The ID associated with the recording session
