@@ -600,7 +600,7 @@ declare class JitsiConference {
      * @param {string} id The id of the participant to mute.
      */
     muteParticipant(id: string, mediaType: any): void;
-    onStartRecording(data: any): void;
+    onStartRecording(): void;
     /**
      * Check if recording need to start.
      */

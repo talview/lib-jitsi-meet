@@ -1828,32 +1828,36 @@ JitsiConference.prototype.muteParticipant = function(id, mediaType) {
 };
 
 
-JitsiConference.prototype.onStartRecording = function(data) {
+JitsiConference.prototype.onStartRecording = function() {
 
-    if (this.options.config.startRecording === null) {
-        logger.info('start rec do nothing');
+    try {
+        if (this.options.config.startRecording === null) {
+            logger.info('start rec do nothing');
 
-        return;
-    } else if (this.options.config.startRecording === undefined && this.isModerator()) {
-        logger.info('starting recording with moderator role');
-        this.recordingManager.startRecording({ mode: 'file' });
-
-        return;
-    }
-    logger.info('====start rec data received', this.options.config.startRecording);
-    const recSession = this.recordingManager.getActiveSession();
-
-    logger.info('===start rec recSession', recSession);
-    if (recSession === null || (recSession != null && recSession.status === JitsiRecordingConstants.OFF)) {
-        if (this.options.config.startRecording) {
-            logger.info('starting recording');
+            return;
+        } else if (this.options.config.startRecording === undefined && this.isModerator()) {
+            logger.info('starting recording with moderator role');
             this.recordingManager.startRecording({ mode: 'file' });
-        }
 
-    // eslint-disable-next-line max-len
-    } else if (recSession != null && recSession.status != JitsiRecordingConstants.OFF && !this.options.config.startRecording) {
-        logger.info('===stopping recording');
-        this.recordingManager.stopRecording(recSession.sessionID);
+            return;
+        }
+        logger.info('====start rec data received', this.options.config.startRecording);
+        const recSession = this.recordingManager.getActiveSession();
+
+        logger.info('===start rec recSession', recSession);
+        if (recSession === null || (recSession !== null && recSession.status === JitsiRecordingConstants.OFF)) {
+            if (this.options.config.startRecording) {
+                logger.info('starting recording');
+                this.recordingManager.startRecording({ mode: 'file' });
+            }
+
+        // eslint-disable-next-line max-len
+        } else if (recSession !== null && recSession.status !== JitsiRecordingConstants.OFF && !this.options.config.startRecording) {
+            logger.info('===stopping recording');
+            this.recordingManager.stopRecording(recSession.sessionID);
+        }
+    } catch (e) {
+        logger.error('start recording error', e);
     }
 
 };
@@ -2074,7 +2078,7 @@ JitsiConference.prototype.onMemberKicked = function(
  */
 JitsiConference.prototype.onLocalRoleChanged = function(role) {
     // Emit role changed for local  JID
-    this.onStartRecording({ test: true });
+    this.onStartRecording();
     this.eventEmitter.emit(
         JitsiConferenceEvents.USER_ROLE_CHANGED, this.myUserId(), role);
 };
