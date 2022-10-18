@@ -6,17 +6,26 @@ on:
       - talview_changes
       - develop
 jobs:
-  run-ci:
-    name: Build
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Repo metadata
+      id: repo
+      uses: actions/github-script@v3
       with:
-        node-version: '16.x'
+        script: |
+          const repo = await github.repos.get(context.repo)
+          return repo.data
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
     - run: npm install
     - run: npm run build
-    - uses: actions/upload-artifact@v3
+    - name: create artifact
+      uses: actions/upload-artifact@v3
       with:
         name: lib-jitsi-meet-artifact
         path: |
