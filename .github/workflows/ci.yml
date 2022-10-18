@@ -1,7 +1,10 @@
 name: Simple CI
 
-on: [pull_request]
-
+on:
+  push:
+    branches:
+      - docker_workflow
+      - develop
 jobs:
   run-ci:
     name: Build
@@ -13,11 +16,13 @@ jobs:
         node-version: '16.x'
     - run: npm install
     - run: npm run build
-    - name: Check git status
-      run: git status
-    - name: Check git diff
-      run: git diff
-    - name: Check if the git repository is clean
-      run: exit $( git status --porcelain --untracked-files=no | head -255 | wc -l )
-    - run: npm run lint
-    - run: npm run test
+    - uses: actions/upload-artifact@v3
+      with:
+        name: lib-jitsi-meet-artifact
+        path: |
+          connection_optimization/
+          dist/
+          modules/browser/capabilities.json
+          types/
+          package.json
+
