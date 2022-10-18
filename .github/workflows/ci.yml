@@ -3,7 +3,7 @@ name: Simple CI
 on:
   push:
     branches:
-      - docker_workflow
+      - talview_changes
       - develop
 jobs:
   run-ci:
