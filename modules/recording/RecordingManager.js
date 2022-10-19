@@ -4,6 +4,7 @@ import { XMPPEvents } from '../../service/xmpp/XMPPEvents';
 
 import JibriSession from './JibriSession';
 import recordingXMLUtils from './recordingXMLUtils';
+import JitsiRecordingConstants from './recordingConstants';
 
 const logger = getLogger(__filename);
 
@@ -108,6 +109,22 @@ class RecordingManager {
 
                 return Promise.reject(error);
             });
+    }
+
+    /**
+         * Get active session detials.
+         *
+         * @returns {Object|undefined}
+         */
+    getActiveSession() {
+
+        if(this._sessions.length !== undefined){
+            return this._sessions.find(sessionData => sessionData.mode === JitsiRecordingConstants.mode.FILE
+                && (sessionData.status === JitsiRecordingConstants.ON
+                    || sessionData.status === JitsiRecordingConstants.PENDING));
+        }else {
+            return null;
+        }
     }
 
     /**

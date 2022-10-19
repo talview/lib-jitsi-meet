@@ -600,6 +600,11 @@ declare class JitsiConference {
      * @param {string} id The id of the participant to mute.
      */
     muteParticipant(id: string, mediaType: any): void;
+    onStartRecording(): void;
+    /**
+     * Check if recording need to start.
+     */
+    isStartRecording(): (options: any) => Promise<any>;
     /**
      * Notifies this JitsiConference that a new member has joined its chat room.
      *

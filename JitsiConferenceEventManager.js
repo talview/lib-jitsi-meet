@@ -252,6 +252,11 @@ JitsiConferenceEventManager.prototype.setupChatRoomListeners = function() {
         JitsiConferenceEvents.CONFERENCE_ERROR,
         JitsiConferenceErrors.CHAT_ERROR);
 
+    chatRoom.addListener(XMPPEvents.START_RECORDING,
+            conference.onStartRecording.bind(conference));
+    this.chatRoomForwarder.forward(XMPPEvents.START_RECORDING,
+                JitsiConferenceEvents.START_RECORDING);
+
     this.chatRoomForwarder.forward(XMPPEvents.SETTINGS_ERROR_RECEIVED,
         JitsiConferenceEvents.CONFERENCE_ERROR,
         JitsiConferenceErrors.SETTINGS_ERROR);

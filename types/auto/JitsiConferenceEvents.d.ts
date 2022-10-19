@@ -255,6 +255,10 @@ export declare enum JitsiConferenceEvents {
      */
     STARTED_MUTED = "conference.started_muted",
     /**
+     * Start recording  .
+     */
+    START_RECORDING = "conference.startRecording",
+    /**
      * Indicates that subject of the conference has changed.
      */
     SUBJECT_CHANGED = "conference.subjectChanged",
@@ -439,6 +443,7 @@ export declare const VIDEO_SIP_GW_AVAILABILITY_CHANGED = JitsiConferenceEvents.V
 export declare const VIDEO_SIP_GW_SESSION_STATE_CHANGED = JitsiConferenceEvents.VIDEO_SIP_GW_SESSION_STATE_CHANGED;
 export declare const START_MUTED_POLICY_CHANGED = JitsiConferenceEvents.START_MUTED_POLICY_CHANGED;
 export declare const STARTED_MUTED = JitsiConferenceEvents.STARTED_MUTED;
+export declare const START_RECORDING = JitsiConferenceEvents.START_RECORDING;
 export declare const SUBJECT_CHANGED = JitsiConferenceEvents.SUBJECT_CHANGED;
 export declare const SUSPEND_DETECTED = JitsiConferenceEvents.SUSPEND_DETECTED;
 export declare const TALK_WHILE_MUTED = JitsiConferenceEvents.TALK_WHILE_MUTED;

@@ -1,23 +1,37 @@
 name: Simple CI
 
-on: [pull_request]
-
+on:
+  push:
+    branches:
+      - talview_changes
+      - develop
 jobs:
-  run-ci:
-    name: Build
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Repo metadata
+      id: repo
+      uses: actions/github-script@v3
       with:
-        node-version: '16.x'
+        script: |
+          const repo = await github.repos.get(context.repo)
+          return repo.data
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
     - run: npm install
     - run: npm run build
-    - name: Check git status
-      run: git status
-    - name: Check git diff
-      run: git diff
-    - name: Check if the git repository is clean
-      run: exit $( git status --porcelain --untracked-files=no | head -255 | wc -l )
-    - run: npm run lint
-    - run: npm run test
+    - name: create artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: lib-jitsi-meet-artifact
+        path: |
+          connection_optimization/
+          dist/
+          modules/browser/capabilities.json
+          types/
+          package.json
+

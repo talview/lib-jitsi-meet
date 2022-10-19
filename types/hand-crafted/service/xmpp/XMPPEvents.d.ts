@@ -67,6 +67,7 @@
   SENDING_PRIVATE_CHAT_MESSAGE = 'xmpp.sending_private_chat_message',
   SESSION_ACCEPT_TIMEOUT = 'xmpp.session_accept_timeout',
   SPEAKER_STATS_RECEIVED = 'xmpp.speaker_stats_received',
+  START_RECORDING = 'xmpp.start_recording',
   CONFERENCE_TIMESTAMP_RECEIVED = 'xmpp.conference_timestamp_received',
   AV_MODERATION_APPROVED = 'xmpp.av_moderation.approved',
   AV_MODERATION_RECEIVED = 'xmpp.av_moderation.received',

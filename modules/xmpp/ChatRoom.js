@@ -571,7 +571,9 @@ export default class ChatRoom extends Listenable {
             const now = this.connectionTimes['muc.join.started'] = window.performance.now();
 
             logger.log('(TIME) MUC join started:\t', now);
-
+            this.eventEmitter.emit(
+                XMPPEvents.START_RECORDING,
+                {test:true});
             this.eventEmitter.emit(XMPPEvents.MUC_JOIN_IN_PROGRESS);
             this.inProgressEmitted = true;
         }

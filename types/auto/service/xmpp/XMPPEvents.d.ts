@@ -159,6 +159,7 @@ export declare enum XMPPEvents {
      * Event fired when speaker stats update message is received.
      */
     SPEAKER_STATS_RECEIVED = "xmpp.speaker_stats_received",
+    START_RECORDING = "xmpp.start_recording",
     /**
      * Event fired when conference creation timestamp is received.
      */
